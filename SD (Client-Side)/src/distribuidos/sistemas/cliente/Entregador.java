@@ -34,16 +34,16 @@ public class Entregador {
 	}
 
 	protected void executar(String[] args) {
-		if ((args.length > 0)) {
-			Pedido pedido = new Pedido(args[0]);
+		if ((args.length > 0)) { // Verifica se é válido
+			Pedido pedido = new Pedido(args[0]); // Cria um novo pedido
 			for (int i = 1; i < args.length; ++i) {
-				pedido.add(args[i]);
+				pedido.add(args[i]); // Adiciona os argumentos
 			}
 
 			EntregadorInterface dispatcher = this.getEntregador(pedido.getNome());
-			if ((dispatcher == null)) {
+			if ((dispatcher == null)) { // Usuário sem internet ou serviço nao existe
 				System.out.println(" [" + pedido.getNome() + "] > Não foi possível processar, verifique sua conexão e tente novamente.");
-			} else {
+			} else { // Executa o serviço (transparência de localização)
 				String resultado = dispatcher.executar(pedido);
 				System.out.println(" [" + pedido.getNome() + "] > " + resultado);
 			}
@@ -52,11 +52,11 @@ public class Entregador {
 
 	private EntregadorInterface getEntregador(String nome) {
 		try {
-			Socket socket = new Socket();
+			Socket socket = new Socket(); // Tenta conectar com os sevidor
 			socket.connect(new InetSocketAddress(Entregador.SERVIDOR, Entregador.PORTA), 500);
 			return new EntregadorRede(socket);
 		} catch (Exception e) {
-			return this.local.get(nome);
+			return this.local.get(nome); // Tenta processar localmente
 		}
 	}
 

@@ -15,14 +15,14 @@ public class Controlador {
 
 	/* */
 
-	private Entregador dispatcher;
+	private Entregador entrador;
 
 	public Controlador() {
-		this.dispatcher = new Entregador();
+		this.entrador = new Entregador();
 	}
 
 	public void iniciar() {
-		this.dispatcher.iniciar();
+		this.entrador.iniciar();
 		System.out.println(" Escreva ? para ajuda.");
 		System.out.print(" > ");
 
@@ -34,11 +34,11 @@ public class Controlador {
 				// TODO Mostrar ajuda
 			} else {
 				comando = comando.trim();
-				if ((comando.isEmpty())) {
-					System.out.print(" > Entrada inválida");
+				if ((comando.isEmpty())) { // String vazia
+					System.out.println(" > Entrada inválida");
 				} else {
 					String[] entrada = comando.split(" ");
-					this.dispatcher.executar(entrada);
+					this.entrador.executar(entrada); // Pega um serviço
 				}
 			}
 
