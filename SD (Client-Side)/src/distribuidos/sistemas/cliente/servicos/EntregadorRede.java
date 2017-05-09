@@ -11,11 +11,11 @@ import distribuidos.sistemas.cliente.Pedido;
  * Time: 20:36:44
  *
  */
-public class DispatcherRede implements DispatcherInterface {
+public class EntregadorRede implements EntregadorInterface {
 
 	private Socket socket;
 
-	public DispatcherRede(Socket socket) {
+	public EntregadorRede(Socket socket) {
 		this.socket = socket;
 	}
 

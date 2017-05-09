@@ -9,7 +9,7 @@ import distribuidos.sistemas.cliente.Pedido;
  * Time: 20:39:16
  *
  */
-public interface DispatcherInterface {
+public interface EntregadorInterface {
 
 	public String executar(Pedido pedido);
 

@@ -1,7 +1,7 @@
 package distribuidos.sistemas.cliente.servicos.local;
 
 import distribuidos.sistemas.cliente.Pedido;
-import distribuidos.sistemas.cliente.servicos.DispatcherInterface;
+import distribuidos.sistemas.cliente.servicos.EntregadorInterface;
 
 /**
  *
@@ -10,7 +10,7 @@ import distribuidos.sistemas.cliente.servicos.DispatcherInterface;
  * Time: 20:50:04
  *
  */
-public class Somar implements DispatcherInterface {
+public class Somar implements EntregadorInterface {
 
 	@Override
 	public String executar(Pedido pedido) {

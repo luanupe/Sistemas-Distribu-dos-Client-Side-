@@ -5,8 +5,8 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 
-import distribuidos.sistemas.cliente.servicos.DispatcherInterface;
-import distribuidos.sistemas.cliente.servicos.DispatcherRede;
+import distribuidos.sistemas.cliente.servicos.EntregadorInterface;
+import distribuidos.sistemas.cliente.servicos.EntregadorRede;
 import distribuidos.sistemas.cliente.servicos.local.Somar;
 
 /**
@@ -16,17 +16,17 @@ import distribuidos.sistemas.cliente.servicos.local.Somar;
  * Time: 20:22:42
  *
  */
-public class Dispatcher {
+public class Entregador {
 
 	public static final String SERVIDOR = "192.168.29.100";
 	public static final int PORTA = 5588;
 
 	/**/
 
-	private Map<String, DispatcherInterface> local;
+	private Map<String, EntregadorInterface> local;
 
-	protected Dispatcher() {
-		this.local = new HashMap<String, DispatcherInterface>();
+	protected Entregador() {
+		this.local = new HashMap<String, EntregadorInterface>();
 	}
 
 	protected void iniciar() {
@@ -40,7 +40,7 @@ public class Dispatcher {
 				pedido.add(args[i]);
 			}
 
-			DispatcherInterface dispatcher = this.getDispatcher(pedido.getNome());
+			EntregadorInterface dispatcher = this.getEntregador(pedido.getNome());
 			if ((dispatcher == null)) {
 				System.out.println(" [" + pedido.getNome() + "] > Não foi possível processar, verifique sua conexão e tente novamente.");
 			} else {
@@ -50,11 +50,11 @@ public class Dispatcher {
 		}
 	}
 
-	private DispatcherInterface getDispatcher(String nome) {
+	private EntregadorInterface getEntregador(String nome) {
 		try {
 			Socket socket = new Socket();
-			socket.connect(new InetSocketAddress(Dispatcher.SERVIDOR, Dispatcher.PORTA), 500);
-			return new DispatcherRede(socket);
+			socket.connect(new InetSocketAddress(Entregador.SERVIDOR, Entregador.PORTA), 500);
+			return new EntregadorRede(socket);
 		} catch (Exception e) {
 			return this.local.get(nome);
 		}

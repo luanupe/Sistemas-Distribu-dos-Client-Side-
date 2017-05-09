@@ -15,10 +15,10 @@ public class Controlador {
 
 	/* */
 
-	private Dispatcher dispatcher;
+	private Entregador dispatcher;
 
 	public Controlador() {
-		this.dispatcher = new Dispatcher();
+		this.dispatcher = new Entregador();
 	}
 
 	public void iniciar() {

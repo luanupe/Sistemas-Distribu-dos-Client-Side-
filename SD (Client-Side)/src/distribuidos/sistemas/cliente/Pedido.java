@@ -35,13 +35,11 @@ public class Pedido {
 	@Override
 	public String toString() {
 		StringBuilder packet = new StringBuilder();
-		packet.append("%");
 		packet.append(this.getNome());
-		packet.append("%");
 
 		for (String arg : this.getArgs()) {
-			packet.append(arg);
 			packet.append("%");
+			packet.append(arg);
 		}
 
 		packet.append('\0'); // Fim da mensagem
